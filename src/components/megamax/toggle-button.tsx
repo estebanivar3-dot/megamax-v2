@@ -10,15 +10,22 @@ import { cn } from "@/lib/utils"
  * NO border. NO uppercase. NO bold. Plain mono 10px. Selected state simply
  * gets a `#262626` bg fill and white text; unselected is transparent with
  * muted text.
+ *
+ * Slots:
+ *  - trailing — right-side affordance (typically `<NumberChip>` to satisfy
+ *    Figma's `Show number` boolean). Stays in the button's hit zone so a
+ *    click on the chip still toggles the parent.
  */
 
 type ToggleButtonProps = React.ComponentProps<"button"> & {
   active?: boolean
+  trailing?: React.ReactNode
 }
 
 function ToggleButton({
   className,
   active = false,
+  trailing,
   children,
   ...props
 }: ToggleButtonProps) {
@@ -29,7 +36,7 @@ function ToggleButton({
       data-active={active}
       aria-pressed={active}
       className={cn(
-        "inline-flex items-center justify-center shrink-0",
+        "inline-flex items-center justify-center shrink-0 gap-(--spacing-mm-6)",
         "px-(--spacing-mm-8) py-(--spacing-mm-6)",
         "font-mono font-normal text-mm-tiny leading-(--leading-mm-normal) whitespace-nowrap",
         "cursor-pointer transition-colors",
@@ -42,6 +49,7 @@ function ToggleButton({
       {...props}
     >
       {children}
+      {trailing}
     </button>
   )
 }

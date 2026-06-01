@@ -110,3 +110,28 @@
 **Agent:** `DropdownMenuContent` had `align="end"`, which pins the menu's right edge to the trigger's right edge — with a wider menu this pushes it leftward across the canvas. Flipped to `align="start"` so the menu's left edge anchors to the trigger's left edge and the panel extends rightward instead. Radix's default `avoidCollisions` will still auto-flip to `end` if there's no room on the right, so this stays viewport-safe. Same wrong-project trap as today's ButtonExtra session: first attempt edited `megamax-ds/components/megamax-v2/dropdown.tsx` chevron (5.333px → 1em + tight viewBox) — that's a real bug in `megamax-ds/` but irrelevant to the `:6011` storybook served from `megamax-v2/`. Reverted that ds-side edit; the menu-alignment fix landed in the correct file this time.
 **Edits:**
 - `src/stories/primitives/Dropdown.stories.tsx:104` — `<DropdownMenuContent align="end" ...>` → `align="start"`
+
+## 2026-05-27 17:42 · ScrollArea Default — content spills past bordered card
+
+**User:** I can see that the 'default' scroll goes down past the scroll arrea card, like goes over
+**Selector:** `Primitives/ScrollArea → Default` (`:6010`, megamax-v2 confirmed via lsof — node PID 6934 listening on 6010)
+**Agent:** `maxHeight` was applied to the Radix Viewport, but the Root (which carries the `border`) had no `overflow: hidden` and no height constraint. Radix's Viewport renders an inner content wrapper with `display: table; min-width: 100%` which doesn't always respect parent maxHeight cleanly — and even when it does, the Root was unbounded so the bordered card grew with the content while the Viewport tried to clip. Flipped to the canonical shadcn/Radix pattern: height constraint goes on Root (with `overflow-hidden`), Viewport becomes `h-full w-full`. Updated JSDoc accordingly. Audited three consumers (`dropdown-menu.tsx` ×2, `menu-list-item.tsx`, `prompt-box.tsx`) — all pass `maxHeight` so semantics are preserved. Stories untouched.
+**Edits:**
+- `src/components/megamax/scroll-area.tsx:30-49` — `maxHeight` moved from Viewport `style` to Root `style`; Root gains `overflow-hidden`; Viewport `w-full` → `h-full w-full`; JSDoc updated to reflect new contract
+
+## 2026-05-27 17:46 · ScrollArea — revert the maxHeight swap; keep only the Root overflow-hidden
+
+**User:** LOL you got rid of the scroll? why tf
+**Selector:** `Primitives/ScrollArea → Default`
+**Agent:** Previous turn was half-wrong. I moved `maxHeight` from Viewport → Root AND made Viewport `h-full w-full`, copying the shadcn canonical pattern. But shadcn's pattern assumes the Root has an EXPLICIT height/maxHeight in pixels — here Root's height stays `auto` even with `max-height: 200px`, so the Viewport's `height: 100%` resolves against an auto-height parent and the Viewport never establishes a scroll container. Radix's `overflow-y: scroll` engaged on a 0-height Viewport = no scrollbar, no scroll. Reverted maxHeight back to the Viewport (Radix's overflow:scroll + maxHeight on the same element = working scroll, as before). Kept the `overflow-hidden` on the Root — that's the part that actually fixes the original "content spills past the card" report, because it clips any leak from Radix's inner `display: table` content wrapper. Net: scroll works (as before my last edit), AND the visual leak is clipped (new behavior). JSDoc rewritten to reflect the actual final contract.
+**Edits:**
+- `src/components/megamax/scroll-area.tsx:30-49` — reverted Viewport back to `w-full` + inline `maxHeight`; Root keeps `overflow-hidden`; JSDoc corrected
+
+## 2026-05-27 17:52 · ScrollArea — content reads as "clipped" not "scrolled"; default type=hover
+
+**User:** the scroll doesn't go past the box anymore, but you actually made it kind of get into the viewport a little bit, so you can see that the scroll still goes further than the car, but it's just clipped now, you know what I mean?
+**Selector:** `Primitives/ScrollArea → Default`
+**Agent:** Live browser inspection confirmed Root=202px (200px viewport + 2×1px border), Viewport=200px with `overflowY:scroll` and `scrollHeight:3708` — the scroll mechanics are correct. But `[data-slot=scroll-area-scrollbar]` count was **0** at rest. Radix's `type="scroll"` unmounts the Scrollbar from the DOM when idle, so the bordered card showed clipped content with zero visual affordance — the eye reads it as "chopped off" rather than "scrollable." Switched the component default to `type="hover"`: cursor over the area mounts the thumb (verified post-fix — vertical bar appears at right edge, 13px wide, opacity 1). Brutalist DS value: explicit affordances over native-mac stealth scrollbars. `type="always"` remains available for surfaces where the scroll signal must be unconditional (existing `AlwaysVisible` story already demonstrates).
+**Edits:**
+- `src/components/megamax/scroll-area.tsx:32` — `type = "scroll"` → `type = "hover"` (component default)
+- `src/components/megamax/scroll-area.tsx:11-19` — JSDoc rewritten to describe `hover` default + when to opt into `always`

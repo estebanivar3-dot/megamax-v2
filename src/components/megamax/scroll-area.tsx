@@ -10,10 +10,15 @@ import { cn } from "@/lib/utils"
  * when system prefs are set to "auto"). Use anywhere we need a guaranteed
  * hard-edged scrollbar — dropdowns, menus, side panels.
  *
- * `maxHeight` is applied to the inner Viewport so its `overflow: scroll`
- * triggers when content exceeds. Defaults to `type="scroll"` so the thumb
- * appears on active scrolling and fades out shortly after (matches native
- * macOS behavior — visible when needed, out of the way otherwise).
+ * `maxHeight` is applied to the inner Viewport so Radix's `overflow-y: scroll`
+ * engages and the thumb appears when content exceeds. The **Root** also gets
+ * `overflow-hidden` so any visual leak from Radix's inner `display: table`
+ * content wrapper is clipped at the bordered card boundary. Defaults to
+ * `type="hover"` so the thumb is visible whenever the cursor is over the
+ * scroll surface — at rest the area looks clean, on engagement the brutalist
+ * thumb signals "this scrolls" before the user has to discover it. Use
+ * `type="always"` for surfaces where the scroll affordance must be visible
+ * unconditionally (long menus, presentation views).
  *
  * Usage:
  *   <ScrollArea maxHeight={200}>...children...</ScrollArea>
@@ -27,7 +32,7 @@ function ScrollArea({
   className,
   children,
   maxHeight,
-  type = "scroll",
+  type = "hover",
   scrollHideDelay = 600,
   ...props
 }: ScrollAreaProps) {
@@ -37,7 +42,7 @@ function ScrollArea({
       data-slot="scroll-area"
       type={type}
       scrollHideDelay={scrollHideDelay}
-      className={cn("relative", className)}
+      className={cn("relative overflow-hidden", className)}
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
