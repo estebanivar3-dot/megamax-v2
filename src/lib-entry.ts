@@ -1,0 +1,15 @@
+export { PromptBox, type PromptBoxProps } from "./components/megamax/prompt-box"
+export { SectionHeader, type SectionHeaderProps } from "./components/megamax/section-header"
+export { Card } from "./components/megamax/card"
+export { NavItem } from "./components/megamax/nav-item"
+export { Badge, type BadgeProps } from "./components/megamax/badge"
+export { Button } from "./components/megamax/button"
+export { IconButton, type IconButtonProps } from "./components/megamax/icon-button"
+export { ScrollArea, type ScrollAreaProps } from "./components/megamax/scroll-area"
+export { Indicator, type IndicatorProps } from "./components/megamax/indicator"
+export { ShortcutHints, type ShortcutHintsProps } from "./components/megamax/shortcut-hints"
+export { Tag, type TagProps } from "./components/megamax/tag"
+// InlineEdit does not exist as a named export — the component exposes
+// InlineEditField, InlineEditInput, and InlineEditHero instead.
+export { InlineEditField, InlineEditInput, InlineEditHero } from "./components/megamax/inline-edit"
+import "./index.css"
