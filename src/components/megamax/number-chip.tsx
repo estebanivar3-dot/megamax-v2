@@ -23,8 +23,8 @@ function NumberChip({ className, children, ...props }: NumberChipProps) {
       data-slot="number-chip"
       className={cn(
         "inline-flex items-center justify-center shrink-0",
-        "font-mono font-medium text-mm-tiny leading-(--leading-mm-loose) uppercase tracking-mm-tab",
-        "px-[0.5em] py-[0.1em] min-w-[1.75em]",
+        "font-mono font-medium text-mm-nano leading-none uppercase tracking-mm-tab",
+        "px-[0.4em] py-[0.25em] min-w-[1.5em]",
         "bg-[var(--color-mm-surface)] border border-[var(--color-mm-border)]",
         "shadow-[var(--shadow-mm-label)] text-[var(--color-mm-fg)]",
         className,

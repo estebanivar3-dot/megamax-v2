@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { useState } from "react"
+import { useState, type ReactNode } from "react"
 import { User, Card, Edit, Trash, Keyboard, Logout, ChevronRight, UserPlus, Mail, Message } from "@nsmr/pixelart-react"
 import {
   MenuListItem,
   MenuList,
   MenuListSeparator,
 } from "@/components/megamax/menu-list-item"
-import { Kbd } from "@/components/megamax/kbd"
 import { DropdownPill } from "@/components/megamax/dropdown-pill"
 import {
   DropdownMenu,
@@ -20,6 +19,15 @@ import {
  *  status rows. */
 const SelectedMark = () => (
   <span className="block size-[6px] bg-[var(--color-mm-cyan)] shrink-0" aria-hidden />
+)
+
+/** Inline keyboard-shortcut text for menu trailing slots — fg-colored mono
+ *  nano, matching the ShortcutHints key style. (Replaces the removed `Kbd`
+ *  primitive; it was just this styled span.) */
+const Shortcut = ({ children }: { children: ReactNode }) => (
+  <span className="font-mono font-normal text-mm-nano leading-none tracking-mm-label uppercase text-[var(--color-mm-fg)]">
+    {children}
+  </span>
 )
 
 const meta: Meta<typeof MenuListItem> = {
@@ -48,7 +56,7 @@ export const Selected: Story = { args: { children: "Comfortable", selected: true
 export const Disabled: Story = { args: { children: "Spacious", disabled: true } }
 export const WithIcon: Story = { args: { children: "Profile", icon: <User /> } }
 export const Command: Story = {
-  args: { children: "Profile", icon: <User />, trailing: <Kbd>⌘ P</Kbd> },
+  args: { children: "Profile", icon: <User />, trailing: <Shortcut>⌘ P</Shortcut> },
 }
 
 export const Label: Story = {
@@ -56,7 +64,7 @@ export const Label: Story = {
 }
 
 export const Destructive: Story = {
-  args: { variant: "destructive", icon: <Trash />, children: "Delete", trailing: <Kbd>⌘ ⌫</Kbd> },
+  args: { variant: "destructive", icon: <Trash />, children: "Delete", trailing: <Shortcut>⌘ ⌫</Shortcut> },
 }
 
 export const Drilldown: Story = {
@@ -127,13 +135,13 @@ export const CommandList: Story = {
     <MenuList>
       <MenuListItem variant="label">My Account</MenuListItem>
       <MenuListSeparator />
-      <MenuListItem icon={<User />} trailing={<Kbd>⇧ P</Kbd>}>Profile</MenuListItem>
-      <MenuListItem icon={<Card />} trailing={<Kbd>⌘ B</Kbd>}>Billing</MenuListItem>
-      <MenuListItem icon={<Edit />} trailing={<Kbd>⌘ E</Kbd>}>Edit</MenuListItem>
-      <MenuListItem icon={<Keyboard />} trailing={<Kbd>⌘ K</Kbd>}>Shortcuts</MenuListItem>
+      <MenuListItem icon={<User />} trailing={<Shortcut>⇧ P</Shortcut>}>Profile</MenuListItem>
+      <MenuListItem icon={<Card />} trailing={<Shortcut>⌘ B</Shortcut>}>Billing</MenuListItem>
+      <MenuListItem icon={<Edit />} trailing={<Shortcut>⌘ E</Shortcut>}>Edit</MenuListItem>
+      <MenuListItem icon={<Keyboard />} trailing={<Shortcut>⌘ K</Shortcut>}>Shortcuts</MenuListItem>
       <MenuListSeparator />
-      <MenuListItem icon={<Trash />} disabled trailing={<Kbd>⌘ ⌫</Kbd>}>Delete</MenuListItem>
-      <MenuListItem icon={<Logout />} trailing={<Kbd>⌘ Q</Kbd>}>Log out</MenuListItem>
+      <MenuListItem icon={<Trash />} disabled trailing={<Shortcut>⌘ ⌫</Shortcut>}>Delete</MenuListItem>
+      <MenuListItem icon={<Logout />} trailing={<Shortcut>⌘ Q</Shortcut>}>Log out</MenuListItem>
     </MenuList>
   ),
 }

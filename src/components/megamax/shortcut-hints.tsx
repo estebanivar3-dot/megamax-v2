@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Kbd } from "./kbd"
 import { cn } from "@/lib/utils"
 
 /**
@@ -8,8 +7,9 @@ import { cn } from "@/lib/utils"
  * `CTRL+. SHORTCUTS  |  CTRL+J CANCEL  |  SHIFT+TAB MODE`
  *
  * Hints separated by thin 9px vertical lines (`--color-mm-border`). Each
- * hint is `<Kbd>keys</Kbd>` (fg) + `<span>label</span>` (muted), 8px tracking-
- * 1.08px uppercase. Container gap-[6px].
+ * hint is a key chunk (fg) + label (muted), 8px tracking-1.08px uppercase.
+ * The key text is just an `fg`-colored span — the row root already supplies
+ * the mono/nano/tracking/uppercase styling. Container gap-[6px].
  */
 
 type Hint = {
@@ -37,7 +37,7 @@ function ShortcutHintsRoot({ hints, className, children }: ShortcutHintsProps) {
         <React.Fragment key={i}>
           {i > 0 && <ShortcutHintSep />}
           <span className="inline-flex items-center gap-(--spacing-mm-4)">
-            <Kbd>{h.keys}</Kbd>
+            <span className="text-[var(--color-mm-fg)]">{h.keys}</span>
             <span className="text-[var(--color-mm-muted)]">{h.label}</span>
           </span>
         </React.Fragment>
@@ -50,7 +50,7 @@ function ShortcutHintSep() {
   return (
     <span
       aria-hidden
-      className="inline-block w-px h-[9px] bg-[var(--color-mm-border)] shrink-0"
+      className="inline-block w-px h-[1em] bg-[var(--color-mm-border)] shrink-0"
     />
   )
 }

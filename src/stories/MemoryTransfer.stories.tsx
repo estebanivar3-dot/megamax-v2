@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
 import { HudFrame } from "@/components/megamax/hud-frame"
-import { ProgressBar } from "@/components/megamax/progress-bar"
+import { ScanProgressBar } from "@/components/megamax/scan-progress-bar"
 
 const meta: Meta = {
   title: "Examples/06 · Memory Transfer",
@@ -31,7 +31,7 @@ export const Default: Story = {
           </div>
         </div>
 
-        <ProgressBar value={78} color="cyan" />
+        <ScanProgressBar value={78} />
       </HudFrame>
     </div>
   ),

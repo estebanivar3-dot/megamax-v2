@@ -66,13 +66,13 @@ function Tab({
         "tracking-mm-tab whitespace-nowrap text-[var(--color-mm-muted)]",
         "[&_svg]:shrink-0",
         // Variant sizing: icon-only is a square; text and icon-text size to content.
-        variant === "icon" && "size-(--size-mm-button-md) p-0 [&_svg]:size-(--size-mm-icon-lg)",
-        variant === "icon-text" && "px-[0.75em] py-[0.2em] gap-[0.5em] [&_svg]:size-[14px]",
+        variant === "icon" && "size-(--size-mm-button-sm) p-0 [&_svg]:size-(--size-mm-icon-md)",
+        variant === "icon-text" && "px-[0.75em] py-[0.2em] gap-[0.5em] [&_svg]:size-(--size-mm-icon-sm)",
         variant === "text" && "px-[1em] py-[0.2em]",
         selected
           ? "bg-[var(--color-mm-surface)] border border-[var(--color-mm-border)] shadow-[var(--shadow-mm-label)]"
           : "border border-transparent",
-        "outline-none focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-mm-muted)]",
+        "outline-none focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-mm-brand)]",
         className,
       )}
       {...props}

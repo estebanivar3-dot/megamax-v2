@@ -40,8 +40,7 @@ function InputOTPGroup({
     <div
       data-slot="input-otp-group"
       className={cn(
-        "flex items-center overflow-hidden",
-        "has-aria-invalid:border-[var(--color-mm-pink)] has-aria-invalid:ring-2 has-aria-invalid:ring-[var(--color-mm-pink)]/30",
+        "flex items-center gap-(--spacing-mm-4)",
         className,
       )}
       {...props}
@@ -66,11 +65,14 @@ function InputOTPSlot({
       className={cn(
         "relative flex size-9 items-center justify-center",
         "font-mono font-medium text-mm-tiny tracking-mm-label text-[var(--color-mm-fg)]",
-        "border-y border-r border-[var(--color-mm-border)] bg-transparent",
-        "first:border-l",
-        "transition-all outline-none",
+        // Every slot carries a full 1px border + a gap (set on the group), so
+        // borders never share an edge or double up. Active simply recolors its
+        // OWN border to brand at the same 1px weight — no ring, no z-index
+        // overlap, identical treatment on every slot.
+        "border border-[var(--color-mm-border)] bg-transparent",
+        "transition-colors outline-none",
         "aria-invalid:border-[var(--color-mm-pink)]",
-        "data-[active=true]:z-10 data-[active=true]:border-[var(--color-mm-brand)] data-[active=true]:ring-2 data-[active=true]:ring-[var(--color-mm-brand)]/40",
+        "data-[active=true]:border-[var(--color-mm-brand)]",
         className,
       )}
       {...props}

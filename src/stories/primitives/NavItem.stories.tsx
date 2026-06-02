@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { useState } from "react"
 import { Home, Folder, Archive, Pin, DebugPlay } from "@nsmr/pixelart-react"
 import { NavItem, NavSection } from "@/components/megamax/nav-item"
+import { NumberChip } from "@/components/megamax/number-chip"
 
 const meta: Meta<typeof NavItem> = {
   title: "Primitives/NavItem",
@@ -16,14 +17,6 @@ const meta: Meta<typeof NavItem> = {
 export default meta
 type Story = StoryObj<typeof NavItem>
 
-function CountBadge({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center justify-center size-[10px] px-(--spacing-mm-4) py-(--spacing-mm-2) bg-[var(--color-mm-surface)] border border-[var(--color-mm-border)] font-mono font-medium text-[6px] leading-[20px] text-[var(--color-mm-fg)] uppercase">
-      {children}
-    </span>
-  )
-}
-
 export const Default: Story = {
   args: { icon: <Home />, children: "Home", variant: "item" },
 }
@@ -37,7 +30,7 @@ export const Child: Story = {
 }
 
 export const ChildWithBadge: Story = {
-  args: { children: "Postgres", variant: "child", badge: <CountBadge>1</CountBadge> },
+  args: { children: "Postgres", variant: "child", badge: <NumberChip>1</NumberChip> },
 }
 
 export const Section: Story = {
@@ -65,14 +58,14 @@ export const FullColumn: Story = {
         <div className="flex flex-col gap-(--spacing-mm-4)">
           <NavSection icon={<Pin />}>Pinned</NavSection>
           <NavItem variant="child" active={active === "auth"}     onClick={set("auth")}>Auth</NavItem>
-          <NavItem variant="child" active={active === "postgres"} onClick={set("postgres")} badge={<CountBadge>1</CountBadge>}>Postgres</NavItem>
+          <NavItem variant="child" active={active === "postgres"} onClick={set("postgres")} badge={<NumberChip>1</NumberChip>}>Postgres</NavItem>
           <NavItem variant="child" active={active === "chatwise"} onClick={set("chatwise")}>Chatwise</NavItem>
         </div>
 
         <div className="flex flex-col gap-(--spacing-mm-4)">
           <NavSection icon={<DebugPlay />}>Processes</NavSection>
           <NavItem variant="child" active={active === "playground"} onClick={set("playground")}>Playground</NavItem>
-          <NavItem variant="child" active={active === "library"}    onClick={set("library")}    badge={<CountBadge>4</CountBadge>}>Library</NavItem>
+          <NavItem variant="child" active={active === "library"}    onClick={set("library")}    badge={<NumberChip>4</NumberChip>}>Library</NavItem>
           <NavItem variant="child" active={active === "log"}        onClick={set("log")}>Log</NavItem>
         </div>
       </div>

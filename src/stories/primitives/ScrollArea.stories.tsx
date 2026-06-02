@@ -19,7 +19,7 @@ export const Default: Story = {
       {...args}
       className="w-[320px] border border-[var(--color-mm-border)] bg-[var(--color-mm-bg)]"
     >
-      <ul className="flex flex-col gap-(--spacing-mm-6) p-(--spacing-mm-12) font-mono text-mm-tiny text-[var(--color-mm-muted)] uppercase tracking-mm-label">
+      <ul className="flex flex-col gap-(--spacing-mm-6) px-(--spacing-mm-12) font-mono text-mm-tiny text-[var(--color-mm-muted)] uppercase tracking-mm-label">
         {fillerLines.map((line) => (
           <li key={line}>{line}</li>
         ))}
@@ -51,7 +51,7 @@ export const AlwaysVisible: Story = {
       {...args}
       className="w-[320px] border border-[var(--color-mm-border)] bg-[var(--color-mm-bg)]"
     >
-      <ul className="flex flex-col gap-(--spacing-mm-6) p-(--spacing-mm-12) font-mono text-mm-tiny text-[var(--color-mm-muted)] uppercase tracking-mm-label">
+      <ul className="flex flex-col gap-(--spacing-mm-6) px-(--spacing-mm-12) font-mono text-mm-tiny text-[var(--color-mm-muted)] uppercase tracking-mm-label">
         {fillerLines.slice(0, 15).map((line) => (
           <li key={line}>{line}</li>
         ))}

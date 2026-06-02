@@ -22,6 +22,14 @@ import { cn } from "@/lib/utils"
  *
  * Usage:
  *   <ScrollArea maxHeight={200}>...children...</ScrollArea>
+ *
+ * Padding caveat: the scrollbar spans the full scroll region (= the viewport),
+ * which INCLUDES any vertical padding on the scrolled content. So if the
+ * immediate child carries `py-*`, the thumb will travel ~that-many-px past the
+ * last visible line at scroll-bottom (it's tracking the padding, like every
+ * native scrollbar). To make the bar hug the content, pad the content
+ * HORIZONTALLY only and let rows/items carry their own internal vertical
+ * spacing — don't put top/bottom padding on the direct scrolled child.
  */
 
 type ScrollAreaProps = React.ComponentProps<typeof ScrollAreaPrimitive.Root> & {

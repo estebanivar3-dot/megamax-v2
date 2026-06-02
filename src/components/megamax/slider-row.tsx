@@ -78,7 +78,7 @@ function SliderRow({
       <div className="flex-1 min-w-0">
         <Slider value={current} min={min} max={max} step={step} onValueChange={handleChange} />
       </div>
-      {showValue && <NumericValue value={String(displayValue)} readOnly />}
+      {showValue && <NumericValue value={String(displayValue)} readOnly className="w-[72px]" />}
     </div>
   )
 }
