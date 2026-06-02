@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Accordion as AccordionPrimitive } from "radix-ui"
+import { ChevronDown } from "@nsmr/pixelart-react"
 
 import { cn } from "@/lib/utils"
 
@@ -7,8 +8,8 @@ import { cn } from "@/lib/utils"
  * Accordion — Vol. 2 Brutalist
  *
  * Built on Radix Accordion primitives (mirrors the shadcn API). Triggers
- * are uppercase mono labels with a visible cyan chevron that rotates 180°
- * when expanded. Item bodies animate height via `mm-accordion-down/up`
+ * are uppercase mono labels with a visible pixelart chevron that rotates
+ * 180° when expanded. Item bodies animate height via `mm-accordion-down/up`
  * keyframes wired to Radix's `--radix-accordion-content-height` CSS var.
  *
  * Defaults to `type="single" collapsible` — pass `type="multiple"` to allow
@@ -56,7 +57,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger w-full flex items-center justify-between gap-(--spacing-mm-6)",
+          "mm-pixel-icon group/accordion-trigger w-full flex items-center justify-between gap-(--spacing-mm-6)",
           "py-(--spacing-mm-8) px-(--spacing-mm-8)",
           "font-mono font-medium text-mm-tiny uppercase tracking-mm-label cursor-pointer",
           "text-[var(--color-mm-fg)] hover:bg-[var(--color-mm-surface)]",
@@ -71,7 +72,7 @@ function AccordionTrigger({
           data-slot="accordion-trigger-icon"
           aria-hidden
           className={cn(
-            "size-[18px] shrink-0",
+            "size-(--size-mm-icon-md) shrink-0",
             "text-[var(--color-mm-fg)]",
             "transition-transform duration-200",
             "group-data-[state=open]/accordion-trigger:rotate-180",
@@ -109,29 +110,6 @@ function AccordionContent({
         {children}
       </div>
     </AccordionPrimitive.Content>
-  )
-}
-
-function ChevronDown({
-  className,
-  ...rest
-}: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      {...rest}
-    >
-      <path
-        d="M3 4.5L6 7.5L9 4.5"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   )
 }
 

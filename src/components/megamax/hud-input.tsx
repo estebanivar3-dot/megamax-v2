@@ -42,8 +42,7 @@ function HudInputGroup({
     <div
       data-slot="hud-input-group"
       className={cn(
-        "group/hud-input flex flex-col gap-2",
-        "[&:has(input:focus)]:is([data-focused])",
+        "group/hud-input flex flex-col gap-(--spacing-mm-8)",
         className,
       )}
       {...props}

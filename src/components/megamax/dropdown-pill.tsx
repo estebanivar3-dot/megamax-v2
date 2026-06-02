@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils"
  */
 
 const dropdownPillVariants = cva(
-  "inline-flex items-center justify-center shrink-0 " +
+  "mm-pixel-icon inline-flex items-center justify-center shrink-0 " +
   "gap-(--spacing-mm-4) " +
   "font-mono font-normal leading-none tracking-mm-label uppercase whitespace-nowrap " +
   "cursor-pointer transition-colors " +

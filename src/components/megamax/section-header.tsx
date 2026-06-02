@@ -110,7 +110,11 @@ function SectionHeader({
               e.stopPropagation()
               toggleVisible()
             }}
-            className="cursor-pointer text-[var(--color-mm-muted)] hover:text-[var(--color-mm-fg)] transition-colors"
+            onKeyDown={(e) => {
+              // Keep Enter/Space on the eye from bubbling to the row's expand handler.
+              if (e.key === " " || e.key === "Enter") e.stopPropagation()
+            }}
+            className="cursor-pointer text-[var(--color-mm-muted)] hover:text-[var(--color-mm-fg)] transition-colors outline-none focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-mm-brand)]"
           >
             {currVisible ? <Eye /> : <EyeClosed />}
           </button>

@@ -28,7 +28,7 @@ import { ScrollArea } from "@/components/megamax/scroll-area"
 
 const SELECTED_INDICATOR = (
   <DropdownMenuPrimitive.ItemIndicator>
-    <span className="block size-[6px] bg-[var(--color-mm-cyan)] shrink-0" aria-hidden />
+    <span className="block size-(--size-mm-dot) bg-[var(--color-mm-cyan)] shrink-0" aria-hidden />
   </DropdownMenuPrimitive.ItemIndicator>
 )
 
@@ -164,6 +164,7 @@ function DropdownMenuCheckboxItem({
       {...props}
     >
       <MenuListItem
+        role="menuitemcheckbox"
         icon={icon}
         trailing={SELECTED_INDICATOR}
         data-slot="dropdown-menu-checkbox-item"
@@ -192,6 +193,7 @@ function DropdownMenuRadioItem({
   return (
     <DropdownMenuPrimitive.RadioItem asChild {...props}>
       <MenuListItem
+        role="menuitemradio"
         icon={icon}
         trailing={SELECTED_INDICATOR}
         data-slot="dropdown-menu-radio-item"

@@ -83,6 +83,7 @@
   --color-mm-purple-border:    rgba(167, 139, 250, 0.3);
 
   --color-mm-progress-tail:    rgba(161, 161, 161, 0.3);
+  --color-mm-placeholder:      rgba(161, 161, 161, 0.3);
 
   /* Toggle (switch) — handle + track tokens, separate from primary palette
      because the switch handle is a pure white knob, not the fg text color. */
@@ -145,7 +146,6 @@
   --size-mm-dot-sm:   4px;
   --size-mm-bracket:  12px;
   --size-mm-bar:      12px;
-  --size-mm-bar-tail: 8px;
   --size-mm-icon-xs:  8px;
   --size-mm-icon-sm:  12px;
   --size-mm-icon-md:  16px;
@@ -270,7 +270,6 @@ html, body, #storybook-root {
   --size-mm-dot-sm:   7px;
   --size-mm-bracket:  19px;
   --size-mm-bar:      19px;
-  --size-mm-bar-tail: 13px;
   --size-mm-icon-xs:  13px;
   --size-mm-icon-sm:  19px;
   --size-mm-icon-md:  26px;

@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils"
  * Sidebar — Vol. 2 Brutalist (228:1811)
  *
  * Vertical rail. Composes `<NavItem>` and `<NavSection>` children grouped
- * into sections separated by `gap-[12px]`. Items inside a section are
- * spaced `gap-[4px]`. The component renders the gap-12 outer; you compose
- * the inner gap-4 groups yourself with a flex-col wrapper.
+ * into sections separated by `--spacing-mm-12`. Items inside a section are
+ * spaced `--spacing-mm-4`. The component renders the outer gap; you compose
+ * the inner groups yourself with a flex-col wrapper.
  *
- * From Figma: `bg-bg`, `border-r border-white/10`, `pr-[8px] py-[8px]`. No
- * left padding — items have their own `pl-[8px]`.
+ * Fixed `w-[168px]` rail (Figma), `--color-mm-bg` + right border. No left
+ * padding — items carry their own `pl-(--spacing-mm-8)`.
  */
 
 function Sidebar({

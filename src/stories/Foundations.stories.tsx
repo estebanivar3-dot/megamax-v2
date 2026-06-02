@@ -109,7 +109,6 @@ const miscSizes: Array<[string, string, string]> = [
   ["--size-mm-dot-sm",   "4px",  "Button subType='dot' marker"],
   ["--size-mm-bracket",  "12px", "tag bracket [ ]"],
   ["--size-mm-bar",      "12px", "progress / scan / segmented bar height"],
-  ["--size-mm-bar-tail", "8px",  "progress trailing cap"],
   ["--size-mm-badge",    "11px", "count badge in NavItem"],
 ]
 

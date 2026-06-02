@@ -13,7 +13,9 @@ import { Tag, type TagColor } from "./tag"
  *  - "data":    marker square + id + label + dot-leader + status tag + timestamp.
  *    `■ 01  KB/RAW/TWEET/...  ........  [ ■ DONE ]  07h 12m`
  *
- * The dot-leader fill uses CSS `border-b-dotted` on a flex-1 spacer span.
+ * The dot-leader fill is a repeating `radial-gradient` dot pattern on a
+ * flex-1 spacer span (not `border-b-dotted`, which renders sub-pixel dashes
+ * on macOS).
  */
 
 function IndexRowSection({

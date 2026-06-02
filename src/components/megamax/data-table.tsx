@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { ChevronLeft, ChevronRight } from "@nsmr/pixelart-react"
 import { cn } from "@/lib/utils"
 import {
   Table,
@@ -84,27 +85,31 @@ function DataTable<T extends Record<string, any>>({
           ))}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-between px-4 py-2 border-t border-[var(--color-mm-border)]">
+      <div className="flex items-center justify-between px-(--spacing-mm-12) py-(--spacing-mm-8) border-t border-[var(--color-mm-border)]">
         <span className="font-mono text-mm-nano text-[var(--color-mm-muted-soft)]">
           {pageData.length} of {data.length} {noun}
         </span>
-        <div className="flex items-center gap-1 font-mono text-mm-nano text-[var(--color-mm-muted-soft)]">
+        <div className="flex items-center gap-(--spacing-mm-4) font-mono text-mm-nano text-[var(--color-mm-muted-soft)]">
           <button
+            type="button"
+            aria-label="Previous page"
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="size-7 inline-flex items-center justify-center border border-[var(--color-mm-border)] hover:border-[var(--color-mm-fg)]/20 hover:text-[var(--color-mm-fg)] disabled:opacity-30 cursor-pointer disabled:cursor-default transition-colors"
+            className="mm-pixel-icon size-(--size-mm-button-xs) inline-flex items-center justify-center border border-[var(--color-mm-border)] [&_svg]:size-(--size-mm-icon-sm) hover:border-[var(--color-mm-fg)]/20 hover:text-[var(--color-mm-fg)] disabled:opacity-30 cursor-pointer disabled:cursor-default transition-colors outline-none focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-mm-brand)]"
           >
-            ‹
+            <ChevronLeft />
           </button>
-          <span className="px-2 tabular-nums">
+          <span className="px-(--spacing-mm-8) tabular-nums">
             {page + 1} / {totalPages}
           </span>
           <button
+            type="button"
+            aria-label="Next page"
             onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
             disabled={page >= totalPages - 1}
-            className="size-7 inline-flex items-center justify-center border border-[var(--color-mm-border)] hover:border-[var(--color-mm-fg)]/20 hover:text-[var(--color-mm-fg)] disabled:opacity-30 cursor-pointer disabled:cursor-default transition-colors"
+            className="mm-pixel-icon size-(--size-mm-button-xs) inline-flex items-center justify-center border border-[var(--color-mm-border)] [&_svg]:size-(--size-mm-icon-sm) hover:border-[var(--color-mm-fg)]/20 hover:text-[var(--color-mm-fg)] disabled:opacity-30 cursor-pointer disabled:cursor-default transition-colors outline-none focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-mm-brand)]"
           >
-            ›
+            <ChevronRight />
           </button>
         </div>
       </div>

@@ -43,7 +43,7 @@ function TagInput({
     "transition-colors focus-within:border-[var(--color-mm-brand)]",
     density === "compact"
       ? "p-(--spacing-mm-4) gap-(--spacing-mm-4)"
-      : "p-(--spacing-mm-8) gap-[10px]",
+      : "p-(--spacing-mm-8) gap-(--spacing-mm-8)",
     stateful && "cursor-text",
     className,
   )
@@ -151,7 +151,7 @@ function StatefulTagInput({
         {input === "" && tags.length === 0 && (
           <span
             aria-hidden
-            className="absolute inset-0 pointer-events-none flex items-center font-mono text-mm-nano uppercase tracking-mm-label text-[var(--color-mm-muted-soft)] normal-case"
+            className="absolute inset-0 pointer-events-none flex items-center font-mono text-mm-nano normal-case tracking-mm-label text-[var(--color-mm-muted-soft)]"
           >
             {placeholder}
           </span>

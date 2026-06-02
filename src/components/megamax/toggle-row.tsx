@@ -49,7 +49,12 @@ function ToggleRow<T extends string>({
       >
         {label}
       </div>
-      <div data-slot="toggle-row-group" className="inline-flex items-center shrink-0">
+      <div
+        data-slot="toggle-row-group"
+        role="group"
+        aria-label={typeof label === "string" ? label : undefined}
+        className="inline-flex items-center shrink-0"
+      >
         {options.map((opt) => (
           <ToggleButton
             key={opt.value}

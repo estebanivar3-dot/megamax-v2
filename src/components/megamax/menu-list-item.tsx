@@ -33,7 +33,7 @@ import { ScrollArea } from "./scroll-area"
  */
 
 const menuListItemVariants = cva(
-  "group relative flex items-center w-full gap-(--spacing-mm-8) " +
+  "mm-pixel-icon group relative flex items-center w-full gap-(--spacing-mm-8) " +
   "font-mono font-normal leading-none tracking-mm-label uppercase whitespace-nowrap " +
   "bg-[var(--color-mm-bg)] transition-colors " +
   "[&_svg]:shrink-0 [&_svg]:[shape-rendering:crispEdges]",

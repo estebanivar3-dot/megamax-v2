@@ -5,8 +5,9 @@ import { ScrollArea } from "./scroll-area"
 /**
  * PromptBox — Vol. 2 Brutalist (183:11273)
  *
- * Outer: `bg-[#171717]`, `border border-white/15`, `p-[8px]`, `flex flex-col
- * gap-[12px]`.
+ * Outer: `--color-mm-bg` surface, a heavier `rgba(255,255,255,0.15)` border
+ * (one-off, brighter than `--color-mm-border`), `p-(--spacing-mm-8)`, flex
+ * column with `gap-(--spacing-mm-12)`.
  *
  * Top: textarea with `>_` placeholder; auto-grows up to `maxLines` (default 3),
  * then yields to the brutalist `ScrollArea` for overflow. Textarea itself has
@@ -94,7 +95,7 @@ function PromptBox({
           className={cn(
             "block w-full resize-none overflow-hidden bg-transparent outline-none border-0 p-0",
             "font-mono font-normal text-mm-tiny leading-(--leading-mm-normal) uppercase",
-            "text-[var(--color-mm-fg)] placeholder:text-[rgba(161,161,161,0.3)]",
+            "text-[var(--color-mm-fg)] placeholder:text-[var(--color-mm-placeholder)]",
             textareaClassName,
           )}
         />

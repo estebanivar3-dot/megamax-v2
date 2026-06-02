@@ -15,8 +15,8 @@ import { cn } from "@/lib/utils"
  * `active` is bright: `bg-white/40` + on-brand (dark) text. NOT cyan — that's
  * the section/separator color, not the active-item color.
  *
- * Row metrics from Figma: `pl-[8px] pr-[4px] py-[4px] gap-[4px]`, icons 8px,
- * font 8px tracking-[1.08px] uppercase.
+ * Row metrics use spacing tokens (pl/pr/py/gap), `--size-mm-icon-xs` icons,
+ * and `text-mm-nano` + `tracking-mm-label` uppercase.
  */
 
 const navItemVariants = cva(
@@ -61,6 +61,7 @@ function NavItem({
       data-slot="nav-item"
       data-variant={variant}
       data-active={active}
+      aria-current={active ? "page" : undefined}
       className={cn(navItemVariants({ active }), className)}
       {...props}
     >

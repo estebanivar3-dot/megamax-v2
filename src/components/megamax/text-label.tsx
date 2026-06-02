@@ -15,10 +15,10 @@ import { cn } from "@/lib/utils"
  */
 
 const textLabelVariants = cva(
-  "mm-pixel-icon inline-flex items-center justify-center gap-[3px] " +
+  "mm-pixel-icon inline-flex items-center justify-center gap-(--spacing-mm-2) " +
   "px-(--spacing-mm-6) py-(--spacing-mm-4) " +
   "font-mono font-normal text-mm-nano uppercase tracking-mm-label whitespace-nowrap " +
-  "text-[var(--color-mm-muted)] [&_svg]:size-[10px] [&_svg]:shrink-0",
+  "text-[var(--color-mm-muted)] [&_svg]:size-(--size-mm-icon-xs) [&_svg]:shrink-0",
   {
     variants: {
       type: {

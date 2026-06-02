@@ -15,8 +15,6 @@ import { cn } from "@/lib/utils"
 
 type HudFrameMode = "solo" | "split"
 
-const HudFrameContext = React.createContext<{ mode: HudFrameMode }>({ mode: "solo" })
-
 function HudFrame({
   mode = "solo",
   className,
@@ -24,21 +22,19 @@ function HudFrame({
   ...props
 }: React.ComponentProps<"div"> & { mode?: HudFrameMode }) {
   return (
-    <HudFrameContext.Provider value={{ mode }}>
-      <div
-        data-slot="hud-frame"
-        data-mode={mode}
-        className={cn(
-          "relative bg-[var(--color-mm-bg)] flex flex-col items-start w-full",
-          mode === "solo" && "p-(--spacing-mm-12) gap-(--spacing-mm-16)",
-          className,
-        )}
-        {...props}
-      >
-        {children}
-        {mode === "solo" && <HudFrameCornerBrackets />}
-      </div>
-    </HudFrameContext.Provider>
+    <div
+      data-slot="hud-frame"
+      data-mode={mode}
+      className={cn(
+        "relative bg-[var(--color-mm-bg)] flex flex-col items-start w-full",
+        mode === "solo" && "p-(--spacing-mm-12) gap-(--spacing-mm-16)",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      {mode === "solo" && <HudFrameCornerBrackets />}
+    </div>
   )
 }
 
@@ -148,5 +144,4 @@ export {
   HudFrameHeader,
   HudFrameTitle,
   HudFrameBody,
-  HudFrameContext,
 }

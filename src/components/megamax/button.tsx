@@ -88,9 +88,6 @@ function ButtonAction({
           )}
         />
       )}
-      {subType === "icon" && (
-        <span aria-hidden className="size-(--size-mm-icon-xs) shrink-0" />
-      )}
       {children}
     </button>
   )
