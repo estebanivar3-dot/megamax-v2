@@ -3,6 +3,8 @@ export { SectionHeader, type SectionHeaderProps } from "./components/megamax/sec
 export { Card, CardHeader, CardTitle, CardDescription, CardAction, CardContent, CardFooter } from "./components/megamax/card"
 export { NumberChip, type NumberChipProps } from "./components/megamax/number-chip"
 export { IndexRow, IndexRowSection, type IndexRowProps } from "./components/megamax/index-row"
+export { LineLoader, type LineLoaderProps } from "./components/megamax/line-loader"
+export { DropdownPill, type DropdownPillProps } from "./components/megamax/dropdown-pill"
 export { NavItem } from "./components/megamax/nav-item"
 export { Badge, type BadgeProps } from "./components/megamax/badge"
 export { Button } from "./components/megamax/button"
