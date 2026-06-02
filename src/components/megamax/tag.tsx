@@ -6,16 +6,22 @@ import { cn } from "@/lib/utils"
 /**
  * Tag — Vol. 2 Brutalist
  *
- * Three types:
+ * Four types:
  *  - "badge"      → bracketed status pill `[ ■ DONE ]`
  *  - "tag"        → hash chip `#WRITING ✕` — when `onRemove` is set the WHOLE
  *                   chip is a clickable delete button (not just the ×).
  *  - "simple-tag" → smaller hash chip without border
+ *  - "pill"       → tinted icon+text chip, NO brackets / NO hash. A clean
+ *                   color-filled pill with an optional leading `icon` slot and
+ *                   uppercase text in the color. Used for inline status/attach
+ *                   chips (NEXT, file-attach, EVENT) where the bracket/hash
+ *                   ornaments of badge/tag don't fit.
  *
  * Colors: cyan / green / pink / amber / purple.
  */
 
 type TagColor = "cyan" | "green" | "pink" | "amber" | "purple"
+type TagType = "badge" | "tag" | "simple-tag" | "pill"
 
 const colorMap: Record<TagColor, { fg: string; fill: string; border: string }> = {
   cyan:   { fg: "text-[var(--color-mm-cyan)]",   fill: "bg-[var(--color-mm-cyan-fill)]",   border: "border-[var(--color-mm-cyan-border)]"   },
@@ -41,6 +47,9 @@ const tagVariants = cva(
         badge:      "border px-(--spacing-mm-8) py-(--spacing-mm-4) gap-(--spacing-mm-6) text-mm-tiny",
         tag:        "border px-(--spacing-mm-8) py-(--spacing-mm-4) gap-(--spacing-mm-6) text-mm-nano",
         "simple-tag": "px-(--spacing-mm-4) py-(--spacing-mm-2) text-mm-nano",
+        // pill: tinted fill, no border, leading icon + uppercase text. Tight
+        // padding/gap so it reads as an inline status chip, not a button.
+        pill:       "px-(--spacing-mm-4) py-(--spacing-mm-2) gap-(--spacing-mm-2) text-mm-nano",
       },
       state: {
         default:  "",
@@ -54,6 +63,8 @@ const tagVariants = cva(
 interface TagProps extends Omit<React.ComponentProps<"button">, "color">, VariantProps<typeof tagVariants> {
   color?: TagColor
   label?: React.ReactNode
+  /** Leading icon, for `type="pill"`. Inherits the color via `currentColor`. */
+  icon?: React.ReactNode
   /** When set on "tag" type, the whole chip becomes a clickable delete button. */
   onRemove?: () => void
 }
@@ -64,12 +75,32 @@ function Tag({
   state = "default",
   color = "cyan",
   label,
+  icon,
   children,
   onRemove,
   ...props
 }: TagProps) {
   const c = colorMap[color]
   const content = label ?? children
+
+  if (type === "pill") {
+    return (
+      <span
+        data-slot="tag"
+        data-type="pill"
+        data-color={color}
+        data-state={state}
+        className={cn(tagVariants({ type, state }), c.fg, c.fill, className)}
+      >
+        {icon != null && (
+          <span aria-hidden className={cn("mm-pixel-icon inline-flex shrink-0 [&_svg]:size-(--size-mm-icon-xs)", c.fg)}>
+            {icon}
+          </span>
+        )}
+        <span className={cn("tracking-mm-pill uppercase", c.fg)}>{content}</span>
+      </span>
+    )
+  }
 
   if (type === "badge") {
     return (

@@ -7,12 +7,14 @@ export { LineLoader, type LineLoaderProps } from "./components/megamax/line-load
 export { DropdownPill, type DropdownPillProps } from "./components/megamax/dropdown-pill"
 export { NavItem } from "./components/megamax/nav-item"
 export { Badge, type BadgeProps } from "./components/megamax/badge"
-export { Button } from "./components/megamax/button"
+export { Button, ButtonGroup, ButtonAction, ButtonExtra, type ButtonColor, type ButtonSubType } from "./components/megamax/button"
 export { IconButton, type IconButtonProps } from "./components/megamax/icon-button"
 export { ScrollArea, type ScrollAreaProps } from "./components/megamax/scroll-area"
 export { Indicator, type IndicatorProps } from "./components/megamax/indicator"
 export { ShortcutHints, type ShortcutHintsProps } from "./components/megamax/shortcut-hints"
 export { Tag, type TagProps } from "./components/megamax/tag"
+export { TabList, Tab, type TabProps } from "./components/megamax/tab"
+export { ToggleButton, type ToggleButtonProps } from "./components/megamax/toggle-button"
 // InlineEdit does not exist as a named export — the component exposes
 // InlineEditField, InlineEditInput, and InlineEditHero instead.
 export { InlineEditField, InlineEditInput, InlineEditHero } from "./components/megamax/inline-edit"
