@@ -72,6 +72,13 @@ function Tab({
         selected
           ? "bg-[var(--color-mm-surface)] border border-[var(--color-mm-border)] shadow-[var(--shadow-mm-label)]"
           : "border border-transparent",
+        // Text-bearing tabs lighten on hover and keep that bright text when
+        // selected (click "locks in" the lighter color). Icon-only tabs are
+        // left as-is — they switch menus/panels and shouldn't recolor.
+        variant !== "icon" &&
+          (selected
+            ? "text-[var(--color-mm-fg)]"
+            : "hover:text-[var(--color-mm-fg)]"),
         "outline-none focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-mm-brand)]",
         className,
       )}
